@@ -1,4 +1,11 @@
-# Saturation Boost - KWin Effect
+Couldn't wait for the dev to add KWin 6.8+ support, so I threw Gemini at it myself. Tested working on Plasma 6.8.3
+
+Only shaders/saturation.frag and shaders/saturation_core.frag files were changed.
+
+<details>
+  <summary>Original Readme</summary>
+  
+  # Saturation Boost - KWin Effect
 
 A KWin desktop effect that increases color saturation/vibrance for more vivid colors. This is the Wayland/KDE equivalent of NVIDIA Digital Vibrance or AMD Saturation settings.
 
