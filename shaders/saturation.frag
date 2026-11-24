@@ -1,10 +1,13 @@
-// Saturation shader - AMD linear and NVIDIA vibrance modes (legacy GLSL)
+// Saturation shader - AMD linear and NVIDIA vibrance modes (GLSL ES 3.00)
+
+precision highp float;
 
 uniform sampler2D sampler;
 uniform vec4 modulation;
 uniform float saturationAmount;  // 1.0 = normal, 1.5 = 150%, 2.0 = 200%
 uniform int mode;                // 0 = AMD (linear), 1 = NVIDIA (non-linear vibrance)
-varying vec2 texcoord0;
+in vec2 texcoord0;
+out vec4 fragColor;
 
 // BT.709 luminance coefficients (for linear RGB)
 const vec3 lumaCoeff = vec3(0.2126, 0.7152, 0.0722);
@@ -56,7 +59,7 @@ vec3 nvidiaVibrance(vec3 color, float amount) {
 
 void main()
 {
-    vec4 tex = texture2D(sampler, texcoord0);
+    vec4 tex = texture(sampler, texcoord0);
 
     // Handle premultiplied alpha
     float alpha = max(tex.a, 0.001);
@@ -82,5 +85,5 @@ void main()
     // Re-apply premultiplied alpha
     result *= alpha;
 
-    gl_FragColor = vec4(result, tex.a) * modulation;
+    fragColor = vec4(result, tex.a) * modulation;
 }
