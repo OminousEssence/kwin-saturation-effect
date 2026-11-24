@@ -1,5 +1,6 @@
-#version 140
-// Saturation shader - AMD linear and NVIDIA vibrance modes
+// Saturation shader - AMD linear and NVIDIA vibrance modes (GLSL ES 3.00)
+
+precision highp float;
 
 uniform sampler2D sampler;
 uniform vec4 modulation;
